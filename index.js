@@ -8,11 +8,13 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
+	console.log("solve command recieved");
+    io.emit('solve', 'blue');
+  });
   socket.on('chat message', function(msg){
   	if(msg.includes("poop")) msg = "you said a bad word";
     io.emit('chat message', msg);
   });
-});
 
 http.listen(port, function(){
   console.log('listening on *:' + port);
